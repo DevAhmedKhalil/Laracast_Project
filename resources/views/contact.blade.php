@@ -1,3 +1,7 @@
-<x-navbar>
-<h1>Welcome to Contact page</h1>
-</x-navbar>
+<x-layout>
+    <x-slot:heading>
+        Contact Page
+    </x-slot:heading>
+    
+    <h1>Hello, From Contact page</h1>
+</x-layout>

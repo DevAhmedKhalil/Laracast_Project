@@ -1,3 +1,7 @@
-<x-navbar>
-<h1>Welcome to About page</h1>
-</x-navbar>
+<x-layout>
+    <x-slot:heading>
+        About Page
+    </x-slot:heading>
+    
+    <h1>Hello, From About page</h1>
+</x-layout>

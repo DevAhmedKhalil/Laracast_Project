@@ -7,9 +7,9 @@
 </head>
 <body>
   
-  <a href="/">Home</a>
-  <a href="/about">About</a>
-  <a href="/contact">Contact</a>
+  <x-nav-link href="/" style="color: red;">Home</x-nav-link>
+  <x-nav-link href="/about"   style="color: green;">About</x-nav-link>
+  <x-nav-link href="/contact" style="color: blue;">Contact</x-nav-link>
 
 {{$slot}}
 

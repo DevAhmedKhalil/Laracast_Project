@@ -11,7 +11,6 @@
 </head>
 
 <body class="h-full">
-
     <div class="min-h-full">
         <nav class="bg-gray-800 text-white">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

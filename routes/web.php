@@ -5,25 +5,40 @@ use App\Models\Job;
 
 Route::get('/', function () {
     return view('home');
-//    $jobs = Job::all();
-//    dd($jobs);
 });
 
 Route::get('/jobs', function () {
-//    $jobs = Job::all(); # Lazy Loading each item in loop
-//    $jobs = Job::with('employer')->paginate(3); # Solved By 'Eager Loading' the relationship
-//    $jobs = Job::with('employer')->simplePaginate(3);
-    $jobs = Job::with('employer')->cursorPaginate(3);
+    $jobs = Job::with('employer')->latest()->simplePaginate(3);
 
-    return view('jobs', [
+    return view('jobs.index', [
         "jobs" => $jobs
     ]);
 });
 
+Route::get('/jobs/create', function () {
+//    dd('Hello There!');
+    return view('jobs.create');
+});
+
+
 Route::get('/jobs/{id}', function ($id) {
     $job = Job::find($id);
+    return view('jobs.show', ['job' => $job]);
+});
 
-    return view('job', ['job' => $job]);
+Route::post('/jobs', function () {
+//    dd(request()->all());
+
+    //1- validation ...
+
+    //2- create job
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1,
+    ]);
+
+    return redirect('/jobs');
 });
 
 Route::get('/contact', function () {

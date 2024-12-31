@@ -10,8 +10,11 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
+//    $jobs = Job::all(); # Lazy Loading each item in loop
+    $jobs = Job::with('employer')->get(); # Solved By 'Eager Loading' the relationship
+
     return view('jobs', [
-        "jobs" => Job::all()
+        "jobs" => $jobs
     ]);
 });
 

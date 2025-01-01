@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static find($id)
  * @method static create(array $array)
  * @method static findOrFail($id)
+ * @property mixed $id
  */
 class Job extends Model
 {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -44,6 +45,16 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
+        // 1- To edit job -> you need to sign in first
+        if (Auth::guest()) {
+            return redirect('/login');
+        }
+
+        // 2- You must be responsible for this job
+        if ($job->employer->user->isNot(Auth::user())) {
+            abort(403); // forbidden
+        }
+
         return view('jobs.edit', compact('job'));
     }
 

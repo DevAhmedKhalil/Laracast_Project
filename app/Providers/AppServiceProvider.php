@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
         // You can solve this by -> 'Eager Loading' the relationship
         Model::preventLazyLoading();
 
-        Gate::define('edit-job', function (User $user, Job $job) {  // User here is always Signed In
-            return ($job->employer->user->is($user));
-        });
+//        Gate::define('edit-job', function (User $user, Job $job) {  // User here is always Signed In
+//            return ($job->employer->user->is($user));
+//        });
     }
 }

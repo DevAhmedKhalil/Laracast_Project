@@ -44,10 +44,10 @@ class JobController extends Controller
             'employer_id' => 1,  // Assuming employer_id is fixed for now
         ]);
 
-//        //* laravel will grab email address
-//        Mail::to($job->employer->user)->send(
-//            new  JobPosted($job)
-//        );
+        //* laravel will grab email address
+        Mail::to($job->employer->user)->queue(
+            new  JobPosted($job)
+        );
 
         return redirect('/jobs');
     }

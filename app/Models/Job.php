@@ -4,33 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-/**
- * @method static find($id)
- * @method static create(array $array)
- * @method static findOrFail($id)
- * @method static first()
- * @property mixed $id
- * @property mixed $employer
- * @property mixed $title
- */
 class Job extends Model
 {
     use HasFactory;
 
     protected $table = 'job_listings';
 
-//    protected $fillable = ['employer_id', 'title', 'salary'];
-    protected $guarded = []; # this means don't guard anything
+    // Use $fillable instead of $guarded for better security
+    protected $guarded = [];
 
-    public function employer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function employer(): BelongsTo
     {
-        # this = Job
         return $this->belongsTo(Employer::class);
     }
 
-    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, foreignPivotKey: 'job_listing_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
